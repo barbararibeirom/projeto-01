@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import  '../../css/Register.module.css';
-import User from '../objects/User';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
