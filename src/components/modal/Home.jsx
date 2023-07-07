@@ -50,9 +50,6 @@ const Home = () => {
     return (
         <>
         <div className="app conteiner">
-
-           
-
             <div className="row">
                 <App />
             </div>           
