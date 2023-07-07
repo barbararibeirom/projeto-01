@@ -1,20 +1,25 @@
 import axios from "axios";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Home = () => {
 
     const [data, setData] = useState(null);
-
+    
     const fetchData = async() => {
-        try {
-            const response = await axios.get("https://infracode-api.onrender.com/produtos");
-            setData(response.data);
-            console.log(response);
-        } catch (error) {
-            
-        }
-    }
+      try {
+          const response = await axios.get("https://infracode-api.onrender.com/produtos");
+          setData(response.data);
+          console.log(response);
+      } catch (error) {
+          
+      }
+  }
+
+    useEffect(( ) => {
+      fetchData();   
+    });
+    
 
     const Card = ({ item }) => (
         <div className="col-4">
@@ -50,9 +55,7 @@ const Home = () => {
 
             <div className="row">
                 <App />
-            </div>
-
-            <button onClick={fetchData} className="btn btn-primary">Load Data</button>
+            </div>           
         </div>
         </>
 
