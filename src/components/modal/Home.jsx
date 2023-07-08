@@ -22,11 +22,11 @@ const Home = () => {
     
 
     const Card = ({ item }) => (
-        <div className="col-4">
-          <div className="card">
-            <img src={item.imagens[0].url} className="card-img-top" alt={item.nome} style={{width:'100%'}} />
-            <div className="card-body">
-              <h2 className="card-title">{item.nome}</h2>
+        <div className="col-3" style={{marginBottom:'20px'}}>
+          <div className="card"style={{height:'100%'}}>
+            <img src={item.imagens[0].url} className="card-img-top" alt={item.nome} style={{width:'100%', height:'250px'}} />
+            <div className="card-body" >
+              <h2 className="card-title" style={{fontSize:'120%'}}>{item.nome}</h2>
               <p className="card-text">{item.descricao}</p>
               <p className="card-text">{item.preco}</p>
             </div>
