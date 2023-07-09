@@ -1,73 +1,93 @@
 import axios from "axios";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-
+import Carousel from 'react-bootstrap/Carousel';
+import Style from '../../css/Footer.module.css'
 
 const Home = () => {
+  const [data, setData] = useState(null);
 
-    const [data, setData] = useState(null);
-    
-    const fetchData = async() => {
-      try {
-          const response = await axios.get("https://infracode-api.onrender.com/produtos");
-          setData(response.data);
-      } catch (error) {
-          
-      }
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("https://infracode-api.onrender.com/produtos");
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  
   const formatCurrency = (value) => {
     return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   };
 
-    useEffect(( ) => {
-      fetchData();   
-    });
-    
-    function handleDetalhesClick(id) {
-    console.log('https://infracode-api.onrender.com/produtos/', id);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const renderCarouselItems = () => {
+    if (!data || data.length === 0) {
+      return null;
+    }
+
+    return data.map((item, index) => (
+      <Carousel.Item key={index}>
+        <img src={item.imagens[0].url} className="d-block w-100 carousel-image" alt={item.nome} style={{height:'350px'}}/>
+        <Carousel.Caption>
+          <h3>{item.nome}</h3>
+          <p>{item.descricao}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    ));
   }
 
-    function Card({ item }) {
-    return (
-      <div className="col-3" style={{ marginBottom: '20px' }}>
-        <div className="card" style={{ height: '100%' }}>
-          <img src={item.imagens[0].url} className="card-img-top" alt={item.nome} style={{ width: '100%', height: '250px' }} />
-          <div className="card-body">
+  const Card = ({ item }) => (
+    <div className="col-3 mb-4">
+      <div className="card" style={{ height: '100%' }}>
+        <img src={item.imagens[0].url} className="card-img-top" alt={item.nome} style={{ width: '100%', height: '250px' }} />
+        <div className="card-body d-flex flex-column justify-content-between">
+          <div>
             <h2 className="card-title" style={{ fontSize: '100%' }}>{item.nome}</h2>
             <p className="card-text">{item.descricao}</p>
+          </div>
+          <div className="d-flex justify-content-between align-items-center">
             <p className="card-text">{formatCurrency(item.preco)}</p>
-            <Link to={`/detalhes/${item.id}`}> <button className="btn btn-secondary" onClick={() => handleDetalhesClick(item.id)}>Detalhes</button> </Link>
+            <Link to={`/detalhes/${item.id}`}>
+              <button className="btn btn-sucess">Detalhes</button>
+            </Link>
           </div>
         </div>
       </div>
-    );
-  }
-      
-    const App = () => {
-        return (
-            <div className="app container">
+    </div>
+  );
+
+  const App = () => {
+    return (
+      <div className="app container">
+        <div className="row">
+          <div className="col-12 mb-4">
+            <Carousel>
+              {renderCarouselItems()}
+            </Carousel>
+          </div>
+          <div className="col-12">
             <div className="row">
               {data?.map((item, index) => (
                 <Card key={index} item={item} />
               ))}
             </div>
           </div>
-        );
-      };
-
-
-    return (
-        <>
-        <div className="app conteiner">
-            <div className="row">
-                <App />
-            </div>           
         </div>
-        </>
-
+      </div>
     );
   };
-  
-  export default Home;
+
+  return (
+    <div className="app container">
+      <div className="row">
+        <App />
+      </div>
+    </div>
+  );
+};
+
+export default Home;
