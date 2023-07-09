@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
-import Style from '../../css/Footer.module.css'
+import Styles from '../../css/Casa.module.css';
 
 const Home = () => {
   const [data, setData] = useState(null);
