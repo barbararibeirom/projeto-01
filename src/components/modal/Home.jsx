@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
-import Styles from '../../css/Casa.module.css';
+import '../../css/Home.module.css';
+
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -30,8 +31,8 @@ const Home = () => {
     }
 
     return data.map((item, index) => (
-      <Carousel.Item key={index}>
-        <img src={item.imagens[0].url} className="d-block w-100 carousel-image" alt={item.nome} style={{height:'350px'}}/>
+      <Carousel.Item key={index} >
+        <img src={item.imagens[0].url} className="d-block w-100 carousel-image" alt={item.nome} style={{height:'400px'}}/>
         <Carousel.Caption>
           <h3>{item.nome}</h3>
           <p>{item.descricao}</p>
@@ -52,7 +53,7 @@ const Home = () => {
           <div className="d-flex justify-content-between align-items-center">
             <p className="card-text">{formatCurrency(item.preco)}</p>
             <Link to={`/detalhes/${item.id}`}>
-              <button className="btn btn-sucess">Detalhes</button>
+              <button className="btn btn-success" style={{marginTop:'-20px'}}>Detalhes</button>
             </Link>
           </div>
         </div>

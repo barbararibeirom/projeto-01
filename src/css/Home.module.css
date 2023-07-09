@@ -1,0 +1,7 @@
+div > button {
+  display: none;
+}
+
+div > a > span{
+  display: none;
+}
