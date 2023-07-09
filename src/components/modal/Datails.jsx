@@ -25,7 +25,7 @@ const Details = () => {
   }, [fetchData]);
 
   const Card = ({ item }) => (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center" style={{marginTop:'25px'}}>
     <div className="col-lg-6 mb-4 border" style={{ marginBottom: '20px', backgroundColor:'#fff', paddingTop:'20px' }}>
       <Carousel interval={null}>
         {item.imagens.slice(0, 3).map((imagem, index) => (
@@ -40,7 +40,7 @@ const Details = () => {
         <p className="card-text">{item.descricao}</p>
         <div className="d-flex justify-content-between align-items-center">
           <p className="card-text">{formatCurrency(item.preco)}</p>
-          <button className="btn btn-success">Comprar</button>
+          <button className="btn btn-success">Adicionar</button>
         </div>
       </div>
     </div>
