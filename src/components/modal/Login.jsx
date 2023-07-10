@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const user = { email, password };
+
+    const user = { email, senha };
 
     try {
       const response = await axios.post("https://infracode-api.onrender.com/auth/login", user);
@@ -42,9 +42,9 @@ const Login = () => {
         <input
           type="password"
           className="Input-field"
-          value={password}
+          value={senha}
           placeholder="Insira uma senha"
-          onChange={({ target }) => setPassword(target.value)}
+          onChange={({ target }) => setSenha(target.value)}
           required
           style={{ marginLeft: "-10px", width: "110%" }}
         />
