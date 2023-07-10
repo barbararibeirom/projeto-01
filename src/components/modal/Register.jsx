@@ -22,7 +22,6 @@ const Register = () => {
   }
 
   async function cadastrar(e) {
-    e.preventDefault(); // Evita a atualização da página
     
     console.log('Nome: ', nome, "E-mail: ", email, "Senha: ", senha);
     const userData = { nome, email, senha };
