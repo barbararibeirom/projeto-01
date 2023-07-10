@@ -14,7 +14,7 @@ const Login = () => {
 
     if (response.status === 200) {
       localStorage.setItem("isLoggedIn", true);
-      navigate("/success");
+      navigate("/");
     } else {
       console.log("Erro ao fazer login");
         }
@@ -23,10 +23,10 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>Usuário: </label>
-      <input type="text" value={username} placeholder="Digite seu usuário" onChange={({ target }) => setUsername(target.value)} required/>
+      <input type="text" className="Input-field" value={username} placeholder="Digite seu usuário" onChange={({ target }) => setUsername(target.value)} required/>
       <div>
         <label>Senha: </label>
-        <input type="password" value={password} placeholder="insira uma senha" onChange={({ target }) => setPassword(target.value)} required/>
+        <input type="password" className="Input-field" value={password} placeholder="Insira uma senha" onChange={({ target }) => setPassword(target.value)} required style={{marginLeft:'-10px', width:'110%'}}/>
       </div>
       <button type="submit">Login</button>
     </form>
