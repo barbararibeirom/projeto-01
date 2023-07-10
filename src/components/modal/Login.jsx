@@ -10,23 +10,43 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = { username, password };
-    const response = await axios.post("https://infracode-api.onrender.com/auth/login", user);
 
-    if (response.status === 200) {
-      localStorage.setItem("isLoggedIn", true);
-      navigate("/");
-    } else {
-      console.log("Erro ao fazer login");
-        }
+    try {
+      const response = await axios.post("https://infracode-api.onrender.com/auth/login", user);
+
+      if (response.status === 200) {
+        localStorage.setItem("isLoggedIn", true);
+        navigate("/");
+      } else {
+        console.log("Erro ao fazer login");
+      }
+    } catch (error) {
+      console.log("Erro ao conectar na API:", error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <label>Usuário: </label>
-      <input type="text" className="Input-field" value={username} placeholder="Digite seu usuário" onChange={({ target }) => setUsername(target.value)} required/>
+      <input
+        type="text"
+        className="Input-field"
+        value={username}
+        placeholder="Digite seu usuário"
+        onChange={({ target }) => setUsername(target.value)}
+        required
+      />
       <div>
         <label>Senha: </label>
-        <input type="password" className="Input-field" value={password} placeholder="Insira uma senha" onChange={({ target }) => setPassword(target.value)} required style={{marginLeft:'-10px', width:'110%'}}/>
+        <input
+          type="password"
+          className="Input-field"
+          value={password}
+          placeholder="Insira uma senha"
+          onChange={({ target }) => setPassword(target.value)}
+          required
+          style={{ marginLeft: "-10px", width: "110%" }}
+        />
       </div>
       <button type="submit">Login</button>
     </form>
