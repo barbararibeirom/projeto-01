@@ -3,13 +3,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = { username, password };
+    
+    const user = { email, password };
 
     try {
       const response = await axios.post("https://infracode-api.onrender.com/auth/login", user);
@@ -27,13 +28,13 @@ const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Usuário: </label>
+      <label>Email: </label>
       <input
-        type="text"
+        type="email"
         className="Input-field"
-        value={username}
-        placeholder="Digite seu usuário"
-        onChange={({ target }) => setUsername(target.value)}
+        value={email}
+        placeholder="Digite seu e-mail"
+        onChange={({ target }) => setEmail(target.value)}
         required
       />
       <div>

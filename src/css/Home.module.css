@@ -1,7 +1,7 @@
-nav > div > button {
+div >div > div > button {
   display: none;
 }
 
-div > a > span{
+div> div > a > span{
   display: none;
 }
