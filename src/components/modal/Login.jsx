@@ -17,6 +17,7 @@ const Login = () => {
 
       if (response.status === 200) {
         localStorage.setItem("isLoggedIn", true);
+        console.log(response);
         navigate("/");
       } else {
         console.log("Erro ao fazer login");
