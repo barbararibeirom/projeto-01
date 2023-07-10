@@ -28,7 +28,7 @@ const Register = () => {
     const userData = { nome, email, senha };
     localStorage.setItem('userData', JSON.stringify(userData));
     const response = await axios.post("https://infracode-api.onrender.com/usuarios", userData);
-    console.log(response);
+    console.log(response)
     navigate('/login');
   }
     
